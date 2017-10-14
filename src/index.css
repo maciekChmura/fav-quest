@@ -1,5 +1,42 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+}
+
 body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
+  background: #EFF2F7;
+}
+
+.container {
+  margin: 20px;
+  display: flex;
+  min-height: 60vh;
+}
+
+.quests {
+  flex: 1;
+  border-right: 1px solid #EFF2F7;
+  position: relative;
+}
+
+.form {
+  padding: 16px;
+}
+
+.fab {
+  position: absolute !important;
+  bottom: 2rem;
+  right: 2rem;
+  border: 20px solid black;
+}
+
+.quest-detail {
+  flex: 2;
+  padding: 16px;
 }

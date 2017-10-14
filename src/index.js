@@ -1,25 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './components/App';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-import questApp from "./reducers";
-import { addQuest } from "./actions";
-//import registerServiceWorker from './registerServiceWorker';
-
-let store = createStore(
-  questApp,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
-
-
-
-
+import store from './store';
 
 ReactDOM.render(
   <Provider store={store}>
       <App />
     </Provider>,
   document.getElementById('root'));
-//registerServiceWorker();
