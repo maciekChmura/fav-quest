@@ -1,51 +1,52 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Typography from 'material-ui/Typography';
-import List, { ListItem, ListItemText } from 'material-ui/List';
-import IconButton from 'material-ui/IconButton';
-import ModeEdit from 'material-ui-icons/ModeEdit';
-import Delete from 'material-ui-icons/Delete';
+import List from 'material-ui/List';
 
-import Input, { InputLabel } from 'material-ui/Input';
-import { FormControl, FormHelperText } from 'material-ui/Form';
+import PlaceListItem from "./PlaceListItem";
+import AddPlace from './AddPlace';
+import Controls from './Controls';
 
 const mapStateToProps = (state) => ({
-  quests: state.quests,
   activeQuest: state.activeQuest,
 });
 
-const QuestDetail = (props) => {
-  if (props.activeQuest !== -1) {
-        const details = props.quests.find((element, index) => index === props.activeQuest);
+const mapDispatchToProps = (dispatch) => ({
+  removePlace: (place) => {
+    dispatch({
+      type: 'REMOVE_PLACE',
+      place: place,
+    })
+  },
+  saveQuest: (quest) => {
+    dispatch({
+      type: 'SAVE_QUEST',
+      quest: quest,
+    })
+  }
+});
 
+const QuestDetail = (props) => {
+  if (props.activeQuest.id) {
     return (
       <div className="quest-detail">
         <Typography type="title">
-          {details.name}
+          {props.activeQuest.name}
         </Typography>
         <List>
-          {details.places.map((element, index) => {
+          {props.activeQuest.places.map((element, index) => {
             return (
-              <ListItem
+              <PlaceListItem
                 key={index}
-                id={index}
-                divider
-              >
-                <ListItemText primary={element} />
-                <IconButton>
-                  <ModeEdit />
-                </IconButton>
-                <IconButton>
-                  <Delete />
-                </IconButton>
-              </ListItem>
+                element={element}
+                index={index}
+                removePlace={() => props.removePlace(element)}
+              />
             )
           })}
         </List>
-        <FormControl >
-          <InputLabel htmlFor="name-simple">point name</InputLabel>
-          <Input id="name-simple" value={""} onChange={this.handleChange} />
-        </FormControl>
+        <AddPlace />
+        <Controls saveQuest={() => props.saveQuest(props.activeQuest)} />
       </div>
     )
   }
@@ -54,4 +55,11 @@ const QuestDetail = (props) => {
   )
 };
 
-export default connect(mapStateToProps)(QuestDetail);
+export default connect(mapStateToProps, mapDispatchToProps)(QuestDetail);
+
+/*
+<FormControl >
+  <InputLabel htmlFor="name-simple">point name</InputLabel>
+  <Input id="name-simple" value={""} onChange={this.handleChange} />
+</FormControl>
+*/

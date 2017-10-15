@@ -1,14 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import List, { ListItem, ListItemText } from 'material-ui/List';
-import Button from 'material-ui/Button';
-import IconButton from 'material-ui/IconButton';
-import ModeEdit from 'material-ui-icons/ModeEdit';
-import Delete from 'material-ui-icons/Delete';
+import List from 'material-ui/List';
 
-
-
-import { selectQuest } from "../actions";
+import QuestListItem from './QuestListItem';
+import { loadQuest } from "../actions";
 
 const mapStateToProps = (state) => ({
   quests: state.quests,
@@ -16,9 +11,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  selectQuest: (id) => {
-    dispatch(selectQuest(id))
+  loadQuest: (quest) => {
+    dispatch(loadQuest(quest));
   },
+  
 });
 
 class QuestList extends React.Component {
@@ -30,26 +26,16 @@ class QuestList extends React.Component {
     }
     return (
       <List>
-        {this.props.quests.map((quest, index) => {
+        {this.props.quests.map((quest) => {
           return (
-            <ListItem
-              key={index}
-              id={index}
-              onClick={() => this.props.selectQuest(index)}
-              button
-              divider
-            >
-              <ListItemText primary={quest.name} />
-              <IconButton>
-                <ModeEdit />
-              </IconButton>
-              <IconButton>
-                <Delete />
-              </IconButton>
-            </ListItem>
+            <QuestListItem
+              key={quest.id}
+              quest={quest}
+              loadQuest={this.props.loadQuest}
+              activeQuest={this.props.activeQuest}
+            />
           )
         })}
-        
       </List>
     )
   }

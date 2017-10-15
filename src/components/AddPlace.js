@@ -6,11 +6,14 @@ import { addQuest } from '../actions'
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit: (text) => {
-    dispatch(addQuest(text))
+    dispatch({
+      type: 'ADD_PLACE',
+      place: text
+    })
   },
 });
 
-class AddQuest extends React.Component {
+class AddPlace extends React.Component {
   constructor() {
     super();
     this.handleTextInput = this.handleTextInput.bind(this);
@@ -37,14 +40,14 @@ class AddQuest extends React.Component {
           });
         }}>
         <TextField
-          placeholder="Enter quest"
+          placeholder="Add place"
           value={this.state.text}
           onChange={this.handleTextInput}
         />
-        <Button raised type="submit">add Quest</Button>
+        <Button raised type="submit">Add</Button>
       </form>
     )
   }
 };
 
-export default connect(null, mapDispatchToProps)(AddQuest);
+export default connect(null, mapDispatchToProps)(AddPlace);

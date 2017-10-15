@@ -40,3 +40,6 @@ body {
   flex: 2;
   padding: 16px;
 }
+.active-list-item {
+  border-left: 4px solid #FFD55F !important;
+}
