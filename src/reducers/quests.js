@@ -1,35 +1,31 @@
-import { ADD_QUEST } from "../actions";
-
 const defaultState = [
   {
-    id: '3397ad85-dd99-49d3-95ab-c6f96ced5d15',
-    name: 'do mamy',
-    places: ['krakow', 'stalowa wola']
-  },
-  {
-    id: 'd2d94be9-0e16-49ce-8a57-af8ed1a74392',
-    name: 'do pracy',
-    places: ['ruczaj', 'novomatic']
-  },
+    id: "3397ad85-dd99-49d3-95ab-c6f96ced5d15",
+    name: "example quest",
+    places: ["Kraków", "Warszawa"]
+  }
 ];
 
 const quests = (state = defaultState, action) => {
   switch (action.type) {
-    case 'SAVE_QUEST':
-      if (state.find(element => element.id === action.quest.id)) {
+    case "SAVE_QUEST":
+      if (state.find(element => element.id === action.quest.id)) { //check if quest exists
         return state.map(element => {
-          if (element.id === action.quest.id) {
+          if (element.id === action.quest.id) { //find and replace
             return action.quest;
           } else {
-            return element;
+            return element; //return existing
           }
         });
-      } else {
+      } else { //return current state and add new
         return [
           ...state,
           action.quest
         ]
       }
+    case "DELETE_QUEST":
+      return state.filter(element => element.id !== action.quest.id)
+
     default:
       return state
   }

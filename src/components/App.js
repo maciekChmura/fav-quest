@@ -1,8 +1,7 @@
-import React from 'react';
-import Paper from 'material-ui/Paper';
-
-import Quests from './Quests';
-import QuestDetail from './QuestDetail';
+import React from "react";
+import Paper from "material-ui/Paper";
+import Quests from "./Quests";
+import QuestDetail from "./QuestDetail";
 
 class App extends React.Component {
   render() {

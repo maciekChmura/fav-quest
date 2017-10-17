@@ -16,7 +16,10 @@ body {
 .container {
   margin: 20px;
   display: flex;
+  margin: 50px auto;
   min-height: 60vh;
+  max-width: 800px;
+  
 }
 
 .quests {
@@ -41,5 +44,8 @@ body {
   padding: 16px;
 }
 .active-list-item {
-  border-left: 4px solid #FFD55F !important;
+  border-left: 4px solid rgb(243, 00, 89) !important;
+}
+.button {
+  margin: 10px;
 }

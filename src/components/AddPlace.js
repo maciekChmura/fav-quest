@@ -1,13 +1,12 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import TextField from 'material-ui/TextField';
-import Button from 'material-ui/Button';
-import { addQuest } from '../actions'
+import React from "react";
+import { connect } from "react-redux";
+import TextField from "material-ui/TextField";
+import Button from "material-ui/Button";
 
 const mapDispatchToProps = (dispatch) => ({
   onSubmit: (text) => {
     dispatch({
-      type: 'ADD_PLACE',
+      type: "ADD_PLACE",
       place: text
     })
   },
@@ -18,7 +17,7 @@ class AddPlace extends React.Component {
     super();
     this.handleTextInput = this.handleTextInput.bind(this);
     this.state = {
-      text: ''
+      text: ""
     };
   }
 
@@ -36,7 +35,7 @@ class AddPlace extends React.Component {
           e.preventDefault();
           this.props.onSubmit(this.state.text);
           this.setState({
-            text: '',
+            text: "",
           });
         }}>
         <TextField
@@ -44,7 +43,7 @@ class AddPlace extends React.Component {
           value={this.state.text}
           onChange={this.handleTextInput}
         />
-        <Button raised type="submit">Add</Button>
+        <Button className="button" raised type="submit">Add</Button>
       </form>
     )
   }

@@ -1,8 +1,7 @@
-import React from 'react'
-import { connect } from 'react-redux'
-import List from 'material-ui/List';
-
-import QuestListItem from './QuestListItem';
+import React from "react";
+import { connect } from "react-redux";
+import List from "material-ui/List";
+import QuestListItem from "./QuestListItem";
 import { loadQuest } from "../actions";
 
 const mapStateToProps = (state) => ({
@@ -14,14 +13,13 @@ const mapDispatchToProps = (dispatch) => ({
   loadQuest: (quest) => {
     dispatch(loadQuest(quest));
   },
-  
 });
 
 class QuestList extends React.Component {
   render() {
     if (this.props.quests.length === 0) {
       return (
-        <p>Start by adding some quests</p>
+        <div className="quest-detail">add some quests</div>
       )
     }
     return (
